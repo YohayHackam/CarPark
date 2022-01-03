@@ -37,7 +37,7 @@ namespace CarPark
         }
         private void Report()
         {
-            Console.WriteLine(bll.GetAllCars());
+           ColorMessage($" Report: \n============== \n{bll.GetAllCars()}", ConsoleColor.Cyan);
         }
 
         private void RemoveCar()
@@ -50,11 +50,11 @@ namespace CarPark
                 licenceNumber = Console.ReadLine();
             }
             if (bll.FindCar(licenceNumber) == -1)
-                ColorMessage("Sorry , Car not found\n=======================", ConsoleColor.DarkRed);
+                ColorMessage($"Sorry , Car {licenceNumber} not found\n=======================", ConsoleColor.DarkRed);
             else
             {
                 if (bll.RemoveCar(licenceNumber))
-                    ColorMessage("Car  secsefully Removed\n============", ConsoleColor.Green);
+                    ColorMessage($"Car {licenceNumber} secsefully Removed\n============", ConsoleColor.Green);
                 else
                     ColorMessage("Something went wrong\n============", ConsoleColor.DarkRed);
             }
@@ -69,7 +69,7 @@ namespace CarPark
                 licenceNumber = Console.ReadLine();
             }
             if (bll.FindCar(licenceNumber) == -1)
-                ColorMessage("Sorry , Car not found\n=======================", ConsoleColor.DarkRed);
+                ColorMessage($"Sorry , Car {licenceNumber} not found\n=======================", ConsoleColor.DarkRed);
             else
                 //  Console.WriteLine($"Car licenceNumber: {licenceNumber} Total cost:{bll.GetCost(licenceNumber)}");
                 ColorMessage($"Car licenceNumber: {licenceNumber} Total cost:{bll.GetCost(licenceNumber)}",ConsoleColor.Cyan);
@@ -96,7 +96,7 @@ namespace CarPark
                 type = TypeSelection();
                 color = ColorSelection();
                 if (bll.AddCar(licenceNumber, type, color))
-                    ColorMessage("Car added secsefully\n============", ConsoleColor.Green);
+                    ColorMessage($"Car {licenceNumber} added secsefully\n============", ConsoleColor.Green);
                 else
                     ColorMessage("Something went wrong\n============", ConsoleColor.DarkRed);
 

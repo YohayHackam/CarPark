@@ -52,10 +52,11 @@ namespace CarPark
         public string GetAllCars()
         {
             StringBuilder CarReport = new StringBuilder();
+            if (cars.Count == 0) return "Parkinglot is Empty";
             foreach (Car car in this.cars)
             {
                 car.CalculatePayment();
-                CarReport.AppendLine(car.GetCar());
+                CarReport.AppendLine(car.GetCar());         
             }
             return CarReport.ToString();
         }
