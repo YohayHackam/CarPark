@@ -1,5 +1,5 @@
 ﻿using CarPark;
-class program
+public class program
 {
     public static void Main()
     {
