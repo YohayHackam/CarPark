@@ -31,6 +31,9 @@ namespace CarPark
                     case Menu.Report:
                         this.Report();
                         break;
+                        default:
+                        ColorMessage($"{UserSelection} not valid ",ConsoleColor.Red);
+                        break;
 
                 }
             }
@@ -81,7 +84,7 @@ namespace CarPark
             CarType type;
             ColorType color;
 
-            if (bll.FreeSpace()==0)
+            if (bll.FreeSpace() == 0)
             {
                 ColorMessage("Sorry , CarPark is full ..\n=======================", ConsoleColor.DarkRed);
             }
@@ -95,11 +98,15 @@ namespace CarPark
                 }
                 type = TypeSelection();
                 color = ColorSelection();
-                if (bll.AddCar(licenceNumber, type, color))
-                    ColorMessage($"Car {licenceNumber} added secsefully\n============", ConsoleColor.Green);
+                if (bll.FindCar(licenceNumber) != -1)
+                    ColorMessage($"Car {licenceNumber} already parked \n============", ConsoleColor.DarkRed);
                 else
-                    ColorMessage("Something went wrong\n============", ConsoleColor.DarkRed);
-
+                { 
+                    if (bll.AddCar(licenceNumber, type, color))
+                        ColorMessage($"Car {licenceNumber} added secsefully\n============", ConsoleColor.Green);
+                    else
+                        ColorMessage("Something went wrong\n============", ConsoleColor.DarkRed);
+                }
 
             }
         }
